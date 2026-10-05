@@ -62,14 +62,6 @@ MainFrame.Active = true
 MainFrame.Draggable = true
 MainFrame.Parent = ScreenGui
 
--- Imagen de Fondo (Puedes colocar el Decal ID de Roblox de la imagen subida)
-local BackgroundImage = Instance.new("ImageLabel")
-BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
-BackgroundImage.BackgroundTransparency = 1
-BackgroundImage.Image = "rbxassetid://0" -- Reemplaza '0' con el ID de tu imagen en Roblox
-BackgroundImage.ImageTransparency = 0.5
-BackgroundImage.Parent = MainFrame
-
 -- Título del Menú
 local MainTitle = Instance.new("TextLabel")
 MainTitle.Size = UDim2.new(1, 0, 0, 40)
@@ -104,7 +96,7 @@ local function CreateToggle(name, posY)
         state = not state
         if state then
             button.Text = name .. " [ENCENDIDO]"
-            button.BackgroundColor3 = Color3.fromRGB(0, 150, 0) -- Verde al activar
+            button.BackgroundColor3 = Color3.fromRGB(180, 0, 0) -- Rojo brillante al activar
         else
             button.Text = name .. " [APAGADO]"
             button.BackgroundColor3 = Color3.fromRGB(40, 40, 40) -- Gris al desactivar
@@ -112,7 +104,7 @@ local function CreateToggle(name, posY)
     end)
 end
 
--- Creación de opciones estáticas
+-- Creación de opciones del menú
 CreateToggle("Fuerza / Pesa", 0)
 CreateToggle("Flexiones", 45)
 CreateToggle("Puños", 90)
