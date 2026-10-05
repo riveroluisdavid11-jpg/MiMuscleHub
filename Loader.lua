@@ -7,13 +7,57 @@ ScreenGui.Name = "LuisKDPHub"
 ScreenGui.Parent = CoreGui
 
 ---------------------------------------------------------
--- VENTANA PRINCIPAL (ESTILO DEL VIDEO)
+-- 1. PANTALLA DE KEY (SISTEMA DE VERIFICACIÓN)
+---------------------------------------------------------
+local KeyFrame = Instance.new("Frame")
+KeyFrame.Size = UDim2.new(0, 350, 0, 220)
+KeyFrame.Position = UDim2.new(0.5, -175, 0.5, -110)
+KeyFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+KeyFrame.BorderSizePixel = 0
+KeyFrame.Active = true
+KeyFrame.Draggable = true
+KeyFrame.Parent = ScreenGui
+
+-- Título Key
+local KeyTitle = Instance.new("TextLabel")
+KeyTitle.Size = UDim2.new(1, 0, 0, 35)
+KeyTitle.Text = "Luis KDP Hub - Sistema Key"
+KeyTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyTitle.BackgroundColor3 = Color3.fromRGB(150, 0, 0)
+KeyTitle.Font = Enum.Font.SourceSansBold
+KeyTitle.TextSize = 18
+KeyTitle.Parent = KeyFrame
+
+-- Campo de entrada Key
+local KeyInput = Instance.new("TextBox")
+KeyInput.Size = UDim2.new(0.8, 0, 0, 35)
+KeyInput.Position = UDim2.new(0.1, 0, 0.35, 0)
+KeyInput.PlaceholderText = "Ingresa la Key..."
+KeyInput.Text = ""
+KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyInput.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+KeyInput.Parent = KeyFrame
+
+-- Botón Entrar
+local EnterButton = Instance.new("TextButton")
+EnterButton.Size = UDim2.new(0.8, 0, 0, 35)
+EnterButton.Position = UDim2.new(0.1, 0, 0.65, 0)
+EnterButton.Text = "Entrar"
+EnterButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+EnterButton.BackgroundColor3 = Color3.fromRGB(180, 0, 0)
+EnterButton.Font = Enum.Font.SourceSansBold
+EnterButton.TextSize = 16
+EnterButton.Parent = KeyFrame
+
+---------------------------------------------------------
+-- 2. VENTANA PRINCIPAL (ESTILO DEL VIDEO)
 ---------------------------------------------------------
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0, 520, 0, 360)
 MainFrame.Position = UDim2.new(0.5, -260, 0.5, -180)
 MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 MainFrame.BorderSizePixel = 0
+MainFrame.Visible = false -- Oculto hasta verificar la clave
 MainFrame.Active = true
 MainFrame.Draggable = true
 MainFrame.Parent = ScreenGui
@@ -82,7 +126,7 @@ local function CreateTab(name)
     return tabBtn
 end
 
--- Pestañas iguales a las del video
+-- Pestañas del menú
 CreateTab("Inicio")
 CreateTab("Entrenar")
 CreateTab("Full Train")
@@ -162,8 +206,21 @@ local function CreateToggleItem(name, posY)
     end)
 end
 
--- Creación de las opciones visuales
+-- Creación de las opciones visuales de entrenamiento
 CreateToggleItem("Overcharged Bar Lift", 30)
 CreateToggleItem("Overcharged Squat", 70)
 CreateToggleItem("Overcharged Bench", 110)
 CreateToggleItem("Overcharged Boulder", 150)
+
+---------------------------------------------------------
+-- LÓGICA DE VERIFICACIÓN DE KEY
+---------------------------------------------------------
+EnterButton.MouseButton1Click:Connect(function()
+    if KeyInput.Text == "venecolombia" then
+        KeyFrame.Visible = false
+        MainFrame.Visible = true
+    else
+        KeyInput.Text = ""
+        KeyInput.PlaceholderText = "¡Key Incorrecta!"
+    end
+end)
