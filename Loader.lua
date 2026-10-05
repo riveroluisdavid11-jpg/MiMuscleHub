@@ -96,7 +96,7 @@ local function CreateToggle(name, posY)
         state = not state
         if state then
             button.Text = name .. " [ENCENDIDO]"
-            button.BackgroundColor3 = Color3.fromRGB(180, 0, 0) -- Rojo brillante al activar
+            button.BackgroundColor3 = Color3.fromRGB(0, 150, 0) -- Verde al activar
         else
             button.Text = name .. " [APAGADO]"
             button.BackgroundColor3 = Color3.fromRGB(40, 40, 40) -- Gris al desactivar
@@ -104,7 +104,7 @@ local function CreateToggle(name, posY)
     end)
 end
 
--- Creación de opciones del menú
+-- Creación de opciones estáticas
 CreateToggle("Fuerza / Pesa", 0)
 CreateToggle("Flexiones", 45)
 CreateToggle("Puños", 90)
