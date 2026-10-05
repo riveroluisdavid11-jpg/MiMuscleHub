@@ -1,34 +1,90 @@
--- Interfaz flotante de prueba
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "MiScriptHub"
-screenGui.Parent = game:GetService("CoreGui")
+-- Carga de la librería de interfaz visual Rayfield
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 250, 0, 150)
-frame.Position = UDim2.new(0.5, -125, 0.5, -75)
-frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-frame.Active = true
-frame.Draggable = true
-frame.Parent = screenGui
+-- Creación de la ventana principal
+local Window = Rayfield:CreateWindow({
+   Name = "Luis KDP Hub",
+   LoadingTitle = "Cargando Luis KDP Hub...",
+   LoadingSubtitle = "por Luis KDP",
+   ConfigurationSaving = { Enabled = false }
+})
 
-local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, 0, 0, 35)
-title.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-title.Text = "Mi Muscle Hub"
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.TextSize = 16
-title.Parent = frame
+-- Pestaña 1: Sistema de Clave (Key System)
+local KeyTab = Window:CreateTab("Acceso", 4483362458)
 
-local button = Instance.new("TextButton")
-button.Size = UDim2.new(0, 180, 0, 45)
-button.Position = UDim2.new(0.5, -90, 0.5, -5)
-button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-button.Text = "Activar Farm"
-button.TextColor3 = Color3.fromRGB(255, 255, 255)
-button.TextSize = 15
-button.Parent = frame
+KeyTab:CreateInput({
+   Name = "Ingresa la Key",
+   PlaceholderText = "Escribe la clave aquí...",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(TextoIngresado)
+       if TextoIngresado == "venecolombia" then
+           Rayfield:Notify({
+              Title = "Acceso Concedido",
+              Content = "¡Bienvenido a Luis KDP Hub!",
+              Duration = 3.5,
+           })
+       else
+           Rayfield:Notify({
+              Title = "Clave Incorrecta",
+              Content = "Intenta de nuevo.",
+              Duration = 3.5,
+           })
+       end
+   end,
+})
 
-button.MouseButton1Click:Connect(function()
-    print("¡Farm Activado!")
-    button.Text = "¡Farm Corriendo!"
-end)
+-- Pestaña 2: Entrenamiento (Pesa, Flexiones, Puños)
+local TabEntrenamiento = Window:CreateTab("Entrenar", 4483362458)
+
+TabEntrenamiento:CreateButton({
+   Name = "Pesa (Fuerza)",
+   Callback = function()
+       print("Opción Pesa seleccionada")
+   end,
+})
+
+TabEntrenamiento:CreateButton({
+   Name = "Flexiones",
+   Callback = function()
+       print("Opción Flexiones seleccionada")
+   end,
+})
+
+TabEntrenamiento:CreateButton({
+   Name = "Puños",
+   Callback = function()
+       print("Opción Puños seleccionada")
+   end,
+})
+
+-- Pestaña 3: Rebirths
+local TabRebirths = Window:CreateTab("Rebirths", 4483362458)
+
+TabRebirths:CreateButton({
+   Name = "Renacer",
+   Callback = function()
+       print("Opción Renacer seleccionada")
+   end,
+})
+
+-- Pestaña 4: Tienda y Mascotas
+local TabTienda = Window:CreateTab("Tienda Pets", 4483362458)
+
+TabTienda:CreateButton({
+   Name = "Comprar Pet",
+   Callback = function()
+       print("Opción Comprar Pet seleccionada")
+   end,
+})
+
+-- Pestaña 5: Jugadores / Amigos
+local TabJugadores = Window:CreateTab("Jugadores", 4483362458)
+
+TabJugadores:CreateToggle({
+   Name = "Proteger Amigos",
+   CurrentValue = true,
+   Flag = "ProtegerAmigosFlag",
+   Callback = function(Estado)
+       print("Protección de amigos:", Estado)
+   end,
+})
